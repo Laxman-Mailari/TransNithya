@@ -1,0 +1,223 @@
+
+<div class="container">
+    <mat-toolbar color="primary">
+        <mat-toolbar-row>
+            <span class="content-position"></span>
+            <span style="font-size: 30px;">My Transaction History</span>
+            <span class="content-position"></span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+
+<div class="container">
+    <mat-tab-group>
+        <mat-tab label="ALL JOURNEY">
+                <div class="mat-elevation-z8">
+                    <table mat-table matSort [dataSource]="datasource">
+                  
+                      <!-- Position Column -->
+                      <ng-container matColumnDef="paymentId">
+                        <th mat-header-cell *matHeaderCellDef> Payment Id </th>
+                        <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+                      </ng-container>
+                  
+                      <!-- Name Column -->
+                      <ng-container matColumnDef="source">
+                        <th mat-header-cell *matHeaderCellDef> Source </th>
+                        <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+                      </ng-container>
+                  
+                      <!-- Weight Column -->
+                      <ng-container matColumnDef="destination">
+                        <th mat-header-cell *matHeaderCellDef> Destination </th>
+                        <td mat-cell *matCellDef="let element"> {{element.destination}} </td>
+                      </ng-container>
+                  
+                      <!-- Symbol Column -->
+                      <ng-container matColumnDef="date">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                        <td mat-cell *matCellDef="let element"> {{getDate(element.date)}} </td>
+                      </ng-container>
+            
+                      <ng-container matColumnDef="busNumber">
+                        <th mat-header-cell *matHeaderCellDef> Bus Number </th>
+                        <td mat-cell *matCellDef="let element"> {{element.busNumber}} </td>
+                      </ng-container>
+                  
+                      <ng-container matColumnDef="totalSeats">
+                        <th mat-header-cell *matHeaderCellDef> Seat No. </th>
+                        <td mat-cell *matCellDef="let element"> {{element.seatNumbers}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status</th>
+                        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                      </ng-container>
+
+                      <ng-container matColumnDef="cancel">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
+                        <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" [disabled]="isDisabled(element)" (click)="onCancel(element, $event)">cancel</button> </td>
+                      </ng-container>
+            
+                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                  
+                    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+                  </div>
+        </mat-tab>
+        <mat-tab label="UPCOMING">
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="datasource">
+              
+                  <ng-container matColumnDef="paymentId">
+                    <th mat-header-cell *matHeaderCellDef> paymentId </th>
+                    <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="source">
+                    <th mat-header-cell *matHeaderCellDef> Source </th>
+                    <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="destination">
+                    <th mat-header-cell *matHeaderCellDef> Destination </th>
+                    <td mat-cell *matCellDef="let element"> {{element.destination}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef> Date </th>
+                    <td mat-cell *matCellDef="let element"> {{getDate(element.date)}} </td>
+                  </ng-container>
+        
+                  <ng-container matColumnDef="busNumber">
+                    <th mat-header-cell *matHeaderCellDef> busNumber </th>
+                    <td mat-cell *matCellDef="let element"> {{element.busNumber}} </td>
+                  </ng-container>
+              
+                  <ng-container matColumnDef="totalSeats">
+                    <th mat-header-cell *matHeaderCellDef> Seat No. </th>
+                    <td mat-cell *matCellDef="let element"> {{element.seatNumbers}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status</th>
+                    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="cancel">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" [disabled]="isDisabled(element)" (click)="onCancel(element)">cancel</button> </td>
+                  </ng-container>
+        
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="isDisabled(row)"></tr>
+                </table>
+              
+                <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+              </div>
+        </mat-tab>
+      <mat-tab label="PAST JOURNEY">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="datasource">
+          
+              <ng-container matColumnDef="paymentId">
+                <th mat-header-cell *matHeaderCellDef> paymentId </th>
+                <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="source">
+                <th mat-header-cell *matHeaderCellDef> Source </th>
+                <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="destination">
+                <th mat-header-cell *matHeaderCellDef> Destination </th>
+                <td mat-cell *matCellDef="let element"> {{element.destination}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef> Date </th>
+                <td mat-cell *matCellDef="let element"> {{getDate(element.date)}} </td>
+              </ng-container>
+    
+              <ng-container matColumnDef="busNumber">
+                <th mat-header-cell *matHeaderCellDef> busNumber </th>
+                <td mat-cell *matCellDef="let element"> {{element.busNumber}} </td>
+              </ng-container>
+          
+              <ng-container matColumnDef="totalSeats">
+                <th mat-header-cell *matHeaderCellDef> Seat No. </th>
+                <td mat-cell *matCellDef="let element"> {{element.seatNumbers}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Status</th>
+                <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="cancel">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" [disabled]="isDisabled(element)" (click)="onCancel(element)">cancel</button> </td>
+              </ng-container>
+    
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="isPastJourney(row)"></tr>
+            </table>
+          
+            <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+    </mat-tab>
+    <mat-tab label="CANCELED">
+      <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="datasource">
+        
+            <ng-container matColumnDef="paymentId">
+              <th mat-header-cell *matHeaderCellDef> paymentId </th>
+              <td mat-cell *matCellDef="let element"> {{element.paymentId}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="source">
+              <th mat-header-cell *matHeaderCellDef> Source </th>
+              <td mat-cell *matCellDef="let element"> {{element.source}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="destination">
+              <th mat-header-cell *matHeaderCellDef> Destination </th>
+              <td mat-cell *matCellDef="let element"> {{element.destination}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element"> {{getDate(element.date)}} </td>
+            </ng-container>
+  
+            <ng-container matColumnDef="busNumber">
+              <th mat-header-cell *matHeaderCellDef> busNumber </th>
+              <td mat-cell *matCellDef="let element"> {{element.busNumber}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="totalSeats">
+              <th mat-header-cell *matHeaderCellDef> Seat No. </th>
+              <td mat-cell *matCellDef="let element"> {{element.seatNumbers}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Status</th>
+              <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cancel">
+              <th mat-header-cell *matHeaderCellDef> Action </th>
+              <td mat-cell *matCellDef="let element"> <button mat-raised-button color="warn" [disabled]="isDisabled(element)" (click)="onCancel(element)">cancel</button> </td>
+            </ng-container>
+  
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="isCanceled(row)"></tr>
+          </table>
+        
+          <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+  </mat-tab>
+  </mat-tab-group>
+</div>

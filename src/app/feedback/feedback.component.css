@@ -1,0 +1,13 @@
+
+.box-content{
+    border-color: #082b71;
+}
+.title{
+    background-color: #082b71;
+    border-color: #082b71;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 5px;
+}

@@ -1,0 +1,18 @@
+.cal-events {
+    display: none !important;
+}
+
+.mc {
+    margin-top: 300px;
+    margin-left: 300px;
+}
+
+.container{
+    margin-top: 10px;
+}
+
+.disabled-date{
+    opacity: 0;
+    color: rgb(94, 190, 190);
+    pointer-events: none;
+}

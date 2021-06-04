@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+mat-card{
+  font-size: 30px;
+}
+
+mat-card span{
+  font-weight: bold;
+}

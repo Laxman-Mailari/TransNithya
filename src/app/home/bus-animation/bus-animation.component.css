@@ -1,0 +1,46 @@
+@keyframes marquee {
+    0% {
+        background-position: 0;
+      }
+    
+      100% {
+        background-position: -1190px;
+      }
+}
+
+.hero {
+    animation-duration: 50s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: marquee;
+}
+
+.hero {
+    height: 350px;
+    background-image: url(src/assets/img/my-bangalore.png);
+    object-fit: cover;
+    background-repeat: repeat;
+    animation: marquee 50s infinite linear;
+}
+
+.hero img {margin-top: 240px;}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}

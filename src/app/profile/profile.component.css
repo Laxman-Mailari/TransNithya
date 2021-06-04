@@ -1,0 +1,13 @@
+
+
+  table {
+    width: 100%;
+  }
+  
+  mat-card{
+    font-size: 30px;
+  }
+
+  mat-card span{
+    font-weight: bold;
+  }

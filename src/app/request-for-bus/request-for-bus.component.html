@@ -1,0 +1,61 @@
+
+<div class="container">
+    <mat-toolbar color="warn">
+        <mat-toolbar-row>
+            <span class="content-position"></span>
+            <span style="font-size: 30px;">Request For Bus</span>
+            <span class="content-position"></span>
+        </mat-toolbar-row>
+    </mat-toolbar>
+</div>
+
+<div class="container">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="requestBusForm" (ngSubmit)="onSubmit(requestBusForm.get('userTripData').value)">
+        <div formGroupName="userTripData">
+          
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input  matInput  placeholder="pat@example.com" name="email" formControlName="mailId" required>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Source</mat-label>
+                <input type="text" matInput [matAutocomplete]="auto" formControlName="source" required>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let place of places" [value]="place">
+                    {{ place }}
+                    </mat-option>
+                </mat-autocomplete>
+                <mat-icon matSuffix> my_location</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Destination</mat-label>
+                <input type="text" matInput [matAutocomplete]="auto"  formControlName="destination" required>
+                <mat-icon matSuffix> my_location</mat-icon>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let place of places" [value]="place">
+                    {{ place }}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Travel Date</mat-label>
+                <input type="text" matInput [ngxMatDatetimePicker]="picker" [min]="minDate" formControlName="travelDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <!-- <mat-datepicker #picker></mat-datepicker> -->
+                <ngx-mat-datetime-picker #picker></ngx-mat-datetime-picker>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Number Of Seats Required</mat-label>
+                <input type="text" matInput formControlName="totalSeats" required>
+            </mat-form-field>
+        </div>
+        <mat-card-actions align="center">
+          <button mat-raised-button color="warn" type="submit">submit</button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+    
+  </mat-card>
+</div>

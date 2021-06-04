@@ -1,0 +1,164 @@
+
+<div class="container-fluid">
+    <div class="container">
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.get('tripInfo').value)">
+                <div class="row" formGroupName="tripInfo" >
+                    <div class="col-md-3">
+                        <mat-form-field class="full-width">
+                            <mat-label>Source</mat-label>
+                            <input type="text" matInput [matAutocomplete]="auto" formControlName="source" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let place of places" [value]="place">
+                                {{ place }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="full-width">
+                            <mat-label>Destination</mat-label>
+                            <input type="text" matInput [matAutocomplete]="auto"  formControlName="destination" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let place of places" [value]="place">
+                                {{ place }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Travel Date</mat-label>
+                            <input type="text" matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" formControlName="travelDate" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-card-actions align="start">
+                            <button mat-raised-button class="btn btn-primary" type="submit" >Modify</button>
+                          </mat-card-actions>
+                    </div>
+                </div>
+            </form>
+    </div>
+</div>
+
+<div class="my-body" *ngIf="number_buses>0 ; else elseBlock">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-card>
+                    <mat-card-header style="font-size: 25px;padding-bottom: 1em;">
+                        we have got {{ number_buses}} result
+                    </mat-card-header>
+                    <mat-card-footer>
+                        <div class="row">
+                            <div class="col-md-4" align="center">
+                                Bus number
+                            </div>
+                            <div class="col-md">
+                                Depature
+                            </div>
+                            <div class="col-md">
+                                Duration
+                            </div>
+                            <div class="col-md">
+                                Arrival
+                            </div>
+                            <div class="col-md">
+                                Price
+                            </div>
+                            <div class="col-md">
+                                Select Seat
+                            </div>
+                        </div>
+                    </mat-card-footer>
+                </mat-card>
+            </div>
+        </div>
+        <div *ngFor="let bus of busData">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-card>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-md-4">
+                                {{bus.busNumber}}
+                            </div>
+                            <div class="col-md">
+                                {{getTime(bus.stops, this.service.getTripInfo().source)}} am
+                            </div>
+                            <div class="col-md">
+                                {{ calculateTotalTime(getTime(bus.stops, this.service.getTripInfo().source), getTime(bus.stops, this.service.getTripInfo().destination)) }}
+                            </div>
+                            <div class="col-md">
+                                {{getTime(bus.stops, this.service.getTripInfo().destination)}} am
+                            </div>
+                            <div class="col-md">
+                                <span>&#8377;</span>{{stdAmount}}
+                            </div>
+                            <div class="col-md">
+                                <button type="button" class="btn btn-warning" (click)="onCollapsed()">Select Seat</button>
+                            </div>
+                        </div>
+                        <div class="collapsableCard" *ngIf="!collapsed">
+                            <hr>
+                              <div class="row">
+                                  <div class="col-12 col-md-6">
+                                      <div class="seat-matrix-wrap">
+                                          <h3>Seat matrix</h3>
+                                          <div class="lower-deck-wrap">
+                                              <div class="lower-deck-topwrap">
+                                                <img src="../assets/img/steering.png" alt>
+                                              </div>
+                                              <!-- <div class="lower-deck-bottomwrap" >
+                                                    <div class="lower-deck-seat-wrap" *ngFor="let seat of bus.seatMatrix">
+                                                        <span rel="tooltip"  [class]="isSeatsEqual(seat.seatNumber,seat) ? classExpression : otherClass" [matTooltip]="seat.seatNumber" *ngIf="[1,5,9,13,17].includes(seat.seatNumber)" (click)="showEvent(seat.seatNumber)" [id]="seat.seatNumber" aria-disabled="true"></span>  
+                                                    </div>
+                                                    <div class="lower-deck-seat-wrap" *ngFor="let seat of bus.seatMatrix">
+                                                        <span rel="tooltip"  [class]="isSeatsEqual(seat.seatNumber,seat) ? classExpression : otherClass" [matTooltip]="seat.seatNumber" *ngIf="[2,6,10,14,18].includes(seat.seatNumber)" (click)="showEvent(seat.seatNumber)" [id]="seat.seatNumber"></span>   
+                                                    </div>
+                                                    <div class="lower-deck-seat-wrap" *ngFor="let seat of bus.seatMatrix">
+                                                        <span rel="tooltip"  [class]="isSeatsEqual(seat.seatNumber,seat) ? classExpression : otherClass" [matTooltip]="seat.seatNumber" *ngIf="[3,7,11,15,19].includes(seat.seatNumber)" (click)="showEvent(seat.seatNumber)" [id]="seat.seatNumber"></span>   
+                                                    </div>
+                                                    <div class="lower-deck-seat-wrap" *ngFor="let seat of bus.seatMatrix">
+                                                        <span rel="tooltip"  [class]="isSeatsEqual(seat.seatNumber,seat) ? classExpression : otherClass" [matTooltip]="seat.seatNumber" *ngIf="[4,8,12,16,20].includes(seat.seatNumber)" (click)="showEvent(seat.seatNumber)" [id]="seat.seatNumber"></span>   
+                                                    </div>
+                                              </div> -->
+                                              <div class="lower-deck-bottomwrap">
+                                                <mat-grid-list cols="4">
+                                                    <mat-grid-tile *ngFor="let seat of bus.seatMatrix;let i=index">
+                                                        <span rel="tooltip"  [class]="isSeatsEqual(seat.seatNumber,seat) ? classExpression : otherClass" [matTooltip]="seat.seatNumber" (click)="showEvent(seat.seatNumber)" [id]="seat.seatNumber"></span>   
+                                                    </mat-grid-tile>
+                                                </mat-grid-list>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6" *ngIf="seatSelected.length > 0">
+                                      <div>
+                                        Selected Seats : <div *ngFor="let num of seatSelected">{{ num }}</div>
+                                      </div>
+                                      <div>
+                                          total Amount : <span> {{ amount }}</span>
+                                      </div>
+                                    <div class="col-12" align="center">
+                                        <button type="button" class="btn btn-primary" routerLinkActive="active" (click)="onProceed(bus.busNumber)">proceed</button>
+                                    </div>
+                                  </div>
+                              </div>
+                        </div>
+                    </mat-card-content>
+                    
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<ng-template #elseBlock >
+    <div style="font-size: 50px; padding-top: 50px; font-weight: 50px; color: rgb(94, 94, 94);" align="center">
+        OOP's bus not found!
+     </div>
+</ng-template>

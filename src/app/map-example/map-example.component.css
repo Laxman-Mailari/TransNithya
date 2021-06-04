@@ -1,0 +1,13 @@
+
+#mapid { 
+    height: 600px; 
+    width: 70%;
+    border: 1px solid rgb(0, 102, 255);
+}
+
+#info{
+    margin-left: 10px;
+}
+.row{
+    margin: 5px;
+}

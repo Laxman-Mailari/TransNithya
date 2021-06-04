@@ -1,0 +1,51 @@
+<div class="container-fluid" style="background-color: rgb(8, 8, 56);padding-bottom: 2em;">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <h1 style="color: white;font-family: 'monospace','sans-serif','Times New Roman', Times, serif;font-size: 30px;">Book Bus Ticket</h1>
+        </div>
+
+        <mat-card>
+            <form [formGroup]="myForm" 
+            (ngSubmit)="onSubmit(myForm.get('tripInfo').value)">
+                <div class="row" formGroupName="tripInfo">
+                    <div class="col-md-3">
+                        <mat-form-field class="full-width">
+                            <mat-label>Source</mat-label>
+                            <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl" formControlName="source" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let place of filteredOption | async" [value]="place">
+                                {{ place }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field class="full-width">
+                            <mat-label>Destination</mat-label>
+                            <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl" formControlName="destination" required>
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let place of filteredOption | async" [value]="place">
+                                {{ place }}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Traveling Date</mat-label>
+                            <input matInput [matDatepicker]="picker" placeholder="Choose a date" [min]="minDate" [max]="maxDate" formControlName="travelDate" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker color="primary"></mat-datepicker>
+                          </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-card-actions align="center">
+                            <button mat-raised-button color="primary" type="submit" routerLinkActive="active" >Search Bus</button>
+                          </mat-card-actions>
+                    </div>
+                </div>
+            </form>
+        </mat-card>
+        
+    </div>
+</div>

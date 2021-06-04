@@ -1,0 +1,59 @@
+<div class="container">
+    <mat-tab-group>
+        <mat-tab label="Add Bus">
+            <form [formGroup]="busInfo"(ngSubmit)="onAddBusSubmit()">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Bus Number</mat-label>
+                        <input type="text" matInput formControlName="busNumber" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Bus Speed</mat-label>
+                        <input type="text" matInput formControlName="speed" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Travel Date</mat-label>
+                        <input type="text" matInput [matDatepicker]="picker1" formControlName="runningDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions align="center">
+                    <button mat-raised-button color="primary" type="submit">submit</button>
+                  </mat-card-actions>
+            </form>
+        </mat-tab>
+        <!-- <mat-tab label="Add Route"> No Content </mat-tab> -->
+        <mat-tab label="Add Route to Bus">
+            <form [formGroup]="busAndRouteInfo"(ngSubmit)="onAddRouteToBusSubmit()">
+                <div>
+                    <mat-form-field>
+                        <mat-label>Route Number</mat-label>
+                        <input type="text" matInput formControlName="routeNumber" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Bus Number</mat-label>
+                        <input type="text" matInput formControlName="busNumber" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-label>Travel Date</mat-label>
+                        <input type="text" matInput [matDatepicker]="picker2" formControlName="runningDate" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <mat-card-actions align="center">
+                    <button mat-raised-button color="primary" type="submit">submit</button>
+                  </mat-card-actions>
+            </form>
+        </mat-tab>
+      </mat-tab-group>
+</div>

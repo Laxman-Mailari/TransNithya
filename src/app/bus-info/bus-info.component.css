@@ -1,0 +1,96 @@
+.container-fluid{
+    background-color: rgb(35, 82, 82);
+    padding: 1em 0 0 0;
+    margin-bottom: 1em;
+}
+
+.container{
+    padding: 0;
+}
+
+mat-form-field input,  mat-datepicker-toggle{
+    color: white;
+    font-size: 17px;  
+}
+
+mat-form-field mat-label{
+    color: rgb(192, 192, 192);
+    font-size: 12px; 
+}
+
+::ng-deep .mat-form-field-required-marker { color: rgb(221, 215, 215); } 
+
+
+.btn{
+    border-radius: 20px;
+}
+
+
+
+mat-card{
+    margin-bottom: 1em;
+}
+
+.collapsableCard{
+    margin-top: 1em;
+}
+
+.seat-matrix-wrap {
+    margin: 0 1%;
+    width: 48%;
+    display: inline-block;
+    max-width: 250px;
+}
+
+.lower-deck-wrap {
+    background: rgb(185, 231, 214);
+    border-top: 2px solid #2d7cd6;
+    padding: 10px;
+}
+
+.lower-deck-topwrap {
+    text-align: right;
+    padding: 0 0 5px;
+    border-bottom: 1px solid #bcbec1;
+    margin-bottom: 10px;
+    min-height: 30px;
+}
+
+.btn-primary{
+    background-color: white;
+    color: rgb(35, 82, 82);
+}
+
+span {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.Seat_Unoccupied{
+    width: 24px;
+    height: 24px;
+    background: url(/assets/img/Seating.png) no-repeat 0 0;
+    margin-bottom: 1px;
+}
+
+.Seat_Occupied{
+    width: 24px;
+    height: 24px;
+    background: url(/assets/img/Seating_O.png) no-repeat 0 0;
+    margin-bottom: 1px;
+}
+
+.Seat_Active{
+    width: 24px;
+    height: 24px;
+    background: url(/assets/img/Seating_A.png) no-repeat 0 0;
+    margin-bottom: 1px;
+}
+
+.Seating_blank {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 1px;
+    cursor: auto;
+}
+

@@ -1,0 +1,106 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="[{ outlets: {'admin': 'crud-operations'} }]">CRUD</a> 
+            <a class="nav-link" routerLink="/crud-operations">CRUD</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Master Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+</nav> -->
+
+<!-- <mat-sidenav-container>
+  <mat-sidenav mode="side" [(opened)] = "opened">side</mat-sidenav>
+  <mat-sidenav-content>main
+    <button (click)="opened = !opened">Toggle Opened</button>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-toolbar>
+  <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <mat-icon *ngIf="!sidenav.opened">
+        menu
+    </mat-icon>
+    <mat-icon *ngIf="sidenav.opened">
+        close
+    </mat-icon>
+  </button>
+  <div style="margin: 0 45% 0 45%;font-size: 25px;">
+    Admin
+  </div>
+  </mat-toolbar>
+  
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8" opened mode="side">
+      <mat-icon>account_circle</mat-icon>
+      <h1>Laxman</h1>
+      <mat-divider></mat-divider> 
+      <button mat-button class="menu-button" (click)="setSwitch('CRUD')">
+          <mat-icon> directions_bus</mat-icon>
+          <span> Add Bus</span>
+      </button>
+      <button mat-button class="menu-button" (click)="setSwitch('DELETE-BUS')">
+          <mat-icon>delete</mat-icon>
+          <span> Delete</span>
+      </button>
+      <mat-divider></mat-divider>
+
+      <button mat-button class="menu-button" (click)="setSwitch('RFB')">
+        <mat-icon> bubble_chart</mat-icon>
+          <span> Request For Bus</span>
+      </button>
+
+      <button mat-button class="menu-button" (click)="setSwitch('ALL-BUS')">
+        <mat-icon> directions_bus</mat-icon>
+        <span> All Bus</span>
+      </button>
+
+      <button mat-button class="menu-button" (click)="setSwitch('ALL-USER')">
+        <mat-icon>people</mat-icon>
+        <span> All Users</span>
+      </button>
+
+      <button mat-button class="menu-button" (click)="setSwitch('SUBSCRIPTION')">
+        <mat-icon>subscriptions</mat-icon>
+        <span> Subscriptions </span>
+      </button>
+      
+      <button mat-button class="menu-button" (click)="setSwitch('TRANSACTION')">
+          <mat-icon> import_export</mat-icon>
+          <span>Transactions</span>
+      </button>
+
+  </mat-sidenav>
+      
+      <mat-sidenav-content style="margin-left: 220px;">
+         <!-- <div class="content">
+          
+         </div> -->
+
+        <div [ngSwitch]="switch_expression">
+          <app-crud-operations *ngSwitchCase="'CRUD'"></app-crud-operations>
+          <app-delete-bus *ngSwitchCase="'DELETE-BUS'"></app-delete-bus>
+          <app-all-bus *ngSwitchCase="'ALL-BUS'"></app-all-bus>
+          <app-all-transactions *ngSwitchCase="'TRANSACTION'"></app-all-transactions>
+          <app-all-user *ngSwitchCase="'ALL-USER'"></app-all-user>
+          <app-requested-bus *ngSwitchCase="'RFB'"></app-requested-bus>
+          <app-subscriptions *ngSwitchCase="'SUBSCRIPTION'"></app-subscriptions>
+        </div>
+
+      </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
+

@@ -1,0 +1,185 @@
+<div class="container">
+  <mat-toolbar>
+      <div align="center">
+        Passenger Details
+      </div>
+  </mat-toolbar>
+  <hr>
+  <div>
+    <mat-card>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-card-content><span>Source : </span>{{ reservationInfo.source }}</mat-card-content>
+          </div>
+          <div class="col-md-6">
+            <mat-card-content><span>Destination : </span>{{ reservationInfo.destination }}</mat-card-content>
+          </div>
+        <div class="col-md-6">
+          <mat-card-content><span>Bus Number : </span>{{ reservationInfo.busNumber }}</mat-card-content>
+        </div>
+        <div class="col-md-6">
+          <mat-card-content><span>Date of Journey : </span>{{ getDate() }}</mat-card-content>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<div class="container">
+<div>
+<table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+  <ng-container matColumnDef="serial_no">
+    <th mat-header-cell *matHeaderCellDef> No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.serial_no}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="age">
+    <th mat-header-cell *matHeaderCellDef> Age </th>
+    <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+    <td mat-footer-cell *matFooterCellDef></td>
+  </ng-container>
+
+  <ng-container matColumnDef="seatNumber">
+    <th mat-header-cell *matHeaderCellDef> Seat No. </th>
+    <td mat-cell *matCellDef="let element"> {{element.seatNumber}} </td>
+    <td mat-footer-cell *matFooterCellDef> Total </td>
+  </ng-container>
+
+  <ng-container matColumnDef="departue">
+      <th mat-header-cell *matHeaderCellDef> Departure </th>
+      <td mat-cell *matCellDef="let element"> {{element.departue}} </td>
+      <td mat-footer-cell *matFooterCellDef><span>&#8377;</span> {{totalAmount}} </td>
+    </ng-container>
+
+  <ng-container matColumnDef="arrival">
+    <th mat-header-cell *matHeaderCellDef> Arrival </th>
+    <td mat-cell *matCellDef="let element"> {{element.arrival}} </td>
+    <td mat-footer-cell *matFooterCellDef> <button mat-raised-button color="warn" (click)="proceed()"> Pay - {{ discount(totalAmount)}} </button> </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-footer-row *matFooterRowDef="['serial_no', 'name', 'age', 'seatNumber','departue','arrival']"></tr>
+</table>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <mat-toolbar>
+        <div align="center">
+          Passenger Details
+        </div>
+    </mat-toolbar>
+    <hr>
+    <div>
+      <mat-card class="full-width">
+          <mat-card-content>Source: {{ reservationInfo.source }}</mat-card-content>
+          <mat-card-content>Destination: {{ reservationInfo.destination }}</mat-card-content>
+          <mat-card-content>Bus Number: {{ reservationInfo.busNumber }}</mat-card-content>
+          <mat-card-content>Date: {{ getDate() }}</mat-card-content>
+      </mat-card>
+      </div>
+   <div>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="symbol">
+            <th mat-header-cell *matHeaderCellDef> Seat No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Departure </th>
+              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Arrival </th>
+              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div> 
+    <div class="container" >
+        <!-- <div>
+          <div>
+              <span>Source: {{ reservationInfo.source }}</span>
+          </div>
+          <div>
+              <span>Destination: {{ reservationInfo.destination }}</span>
+          </div>
+          <div>
+              <span>Bus Number: {{ reservationInfo.busNumber }}</span>
+          </div>
+          <div>
+              <span>Date: {{ getDate() }}</span>
+          </div>
+        </div> 
+        <div>
+            <table>
+                <tr>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Seat No.</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                </tr>
+                <tr *ngFor="let pass of reservationInfo.passengers;let i=index">
+                    <td>{{ i+1 }}</td>
+                    <td>{{ pass.name }}</td>
+                    <td>{{ pass.age }}</td>
+                    <td>{{ pass.seatNumber }}</td>
+                    <td>9:00 {{ getDate() }}</td>
+                    <td>9:45 {{ getDate() }}</td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <div>
+                <span>Amount : {{ totalAmount }}</span>
+            </div>
+            <div>
+                <span>Discount : 10%</span>
+            </div>
+            <div>
+                <span>Total Amount : {{ totalAmount-(totalAmount*10/100) }}</span>
+            </div>
+        </div>
+        <div>
+          <button class="btn btn-warning" (click)="proceed()">Pay With Razorpay</button>&nbsp;
+          <!-- <button class="btn btn-warning" (click)="proceed()">Pay With wallet</button> 
+        </div>
+    </div>
+
+</div> -->

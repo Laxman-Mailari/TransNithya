@@ -1,0 +1,81 @@
+
+<div class="container">
+    <div class="top-header">
+        <h1>Feedback</h1>
+        <p>Please spare a moment to rate your online experience with TransNithya. Your feedback will help us improve our services.</p>
+    </div>
+    <div class="box-content">
+        <div class="title">
+            Rate on 5 star scale (5 Star – Excellent, 4 Star – Very good, 3 Star – Good, 2 Star – Average, 1 Star – Satisfactory)
+        </div>
+        <div class="content">
+            <div>
+                1. please rate overall expirence of TransNithya experience
+            </div>
+            <div>
+                <button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onClick1(i+1)" [matTooltip]="ratingId+1" matTooltipPosition="above">
+                    <mat-icon>
+                      {{showIcon1(i)}}
+                    </mat-icon>
+                  </button>
+                  <mat-error *ngIf="starCount == null || starCount == 0">
+                    Star count is <strong>required</strong> and cannot be zero
+                  </mat-error>
+            </div>
+        </div>
+        <div class="content">
+            <div>
+                2. How much Do you like the TransNithya idea to reduce traffic level and help daily office worker.
+            </div>
+            <div>
+                <button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onClick2(i+1)" [matTooltip]="ratingId+1" matTooltipPosition="above">
+                    <mat-icon>
+                      {{showIcon2(i)}}
+                    </mat-icon>
+                  </button>
+                  <mat-error *ngIf="starCount == null || starCount == 0">
+                    Star count is <strong>required</strong> and cannot be zero
+                  </mat-error>
+            </div>
+        </div>
+        <div class="content">
+            <div>
+                3. How would you compare the overall experience of TransNithya with other commonly used Websites.
+            </div>
+            <div>
+                <button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onClick3(i+1)" [matTooltip]="ratingId+1" matTooltipPosition="above">
+                    <mat-icon>
+                      {{showIcon3(i)}}
+                    </mat-icon>
+                  </button>
+                  <mat-error *ngIf="starCount == null || starCount == 0">
+                    Star count is <strong>required</strong> and cannot be zero
+                  </mat-error>
+            </div>
+        </div>
+        <div class="content">
+            <div>
+                4. website usage and design
+            </div>
+            <div>
+                <button mat-icon-button [color]="color" *ngFor="let ratingId of ratingArr;index as i" [id]="'star_'+i" (click)="onClick4(i+1)" [matTooltip]="ratingId+1" matTooltipPosition="above">
+                    <mat-icon>
+                      {{showIcon4(i)}}
+                    </mat-icon>
+                  </button>
+                  <mat-error *ngIf="starCount == null || starCount == 0">
+                    Star count is <strong>required</strong> and cannot be zero
+                  </mat-error>
+            </div>
+        </div>
+        <div class="content">
+            <span>Any Suggestions for Improvements for TransNithya</span>
+            <div>
+                <textarea name="comments" cols="30" rows="3" id="comment"></textarea>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-primary" align="center" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+/* mat-sidenav-container{
+    height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content{
+    padding: 16px;
+}
+
+mat-sidenav{
+    background-color: aquamarine;
+    width: 200px;
+} */
+
+/* .example-container {
+
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;
+  }
+
+  mat-sidenav{
+    background-color: aquamarine;
+    width: 200px;
+} */
+
+mat-toolbar {
+    background: #002b5c;
+    color: white;
+}
+
+mat-sidenav {
+    margin: 5px;
+    width: 200px;
+    border-right: none;
+    background: #002b5c;
+    color: white;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+button:hover{
+    background: #002b5c;
+}
+
+mat-sidenav-container mat-sidenav-content{
+    height: calc(100vh - 98px);
+    margin: 5px;
+    
+    padding: 5px;
+    color: lightgray;
+}
+
+
+.content {
+    height: calc(100vh - 98px);
+    border-radius: 10px;
+    margin: 5px;
+    margin-left: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: top;
+
+    font-size: 1rem;
+    color: lightgray;
+}
+
+
+
+mat-sidenav-container{
+    height: calc(100vh - 65px);
+}
+
+.menu-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem;
+}
+
+.avatar {
+    margin-top: 16px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-top: 8px;
+    font-weight: normal;
+}
+
+.designation {
+    margin-top: 2px;
+    font-size: 0.7rem;
+    color: lightgrey;
+}
+
+mat-divider {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+

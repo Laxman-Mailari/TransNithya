@@ -1,0 +1,8 @@
+
+.subscription{
+    height: 100%;
+    background-image: url(src/assets/img/bg.jpg);
+    object-fit: cover;
+    background-repeat:inherit;
+    padding: 5em 0 5em 0;
+}
